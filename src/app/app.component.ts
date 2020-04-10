@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataStorageService } from './shared/data-storage.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,16 +9,11 @@ import { DataStorageService } from './shared/data-storage.service';
 })
 export class AppComponent {
 
-    isLogin: boolean = false;
+    isLogin: boolean;
 
-    constructor(private dataStorageService: DataStorageService) {}
+    constructor(public dataStorageService: DataStorageService) {}
 
     ngOnInit() {
-      this.dataStorageService.sharedLogin.subscribe(login => this.isLogin = login);
+      this.dataStorageService.checkLogin();
     }
-
-    // checkLogin() {
-    //   let email = localStorage.getItem('email');
-    //   return email ? true : false;
-    // }
 }

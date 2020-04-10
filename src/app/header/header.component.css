@@ -5,3 +5,7 @@
     font-weight: bold;
     color: #00246d;
 }
+
+.header-bottom {
+    border-bottom: 1px solid #00246d;
+}

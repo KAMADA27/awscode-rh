@@ -1,8 +1,8 @@
-<div class="container-login100">
+<div class="container-login">
     <div class="row">
        <div class="col">   
-            <form (ngSubmit)="onSubmit(authForm)" #authForm="ngForm" class="form100">
-                <div class="login100-form">
+            <form (ngSubmit)="onSubmit(authForm)" #authForm="ngForm" class="form">
+                <div class="login-form">
                     <img 
                         src="../../../assets/images/logo.png" 
                         alt="Company logo" 
@@ -11,7 +11,7 @@
                         class="mb-3"
                     />
                     <div class="form-group w-50">
-                        <span class="login100-form-title">Faça Seu Login</span>
+                        <span class="login-form-title">Faça Seu Login</span>
                         <input 
                             type="email"
                             id="email"
@@ -26,7 +26,7 @@
                             {{ error }}
                         </div>
                         <div class="my-3">
-                            <button class="btn-form100">Login</button>
+                            <button class="btn-form">Login</button>
                         </div>  
                         <span class="material-icons md-18 lock-icon">lock</span>
                         <span class="no-access-text">Não Tenho Acesso</span>

@@ -1,1 +1,43 @@
-<p>dashboard works!</p>
+<div class="row justify-content-center">
+    <div class="dashboard-container">
+        <div class="dashboard-title">
+            <span class="title">Lista De Empregados</span>
+            <div class="title-border">
+                <input class="search-input" placeholder="Buscar Empregado Por Nome"/> 
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr class="header-color">
+                    <th scope="col">Nome</th>
+                    <th scope="col">Cargo</th>
+                    <th scope="col">Data de Nascimento</th>
+                    <th scope="col">Salário</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let emp of employees">
+                    <td>{{ emp.name }}</td>
+                    <td>{{ emp.role }}</td>
+                    <td>{{ emp.dateOfBirth | date: 'dd/MM/yyyy' }}</td>
+                    <td>R$ {{ emp.salary }}</td>
+                    <td class="btn-column">
+                        <button class="icon-btn">
+                            <span class="material-icons">edit</span>
+                        </button>
+                        <button class="icon-btn">
+                            <span class="material-icons">delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="dashboard-btn">
+            <div class="d-flex">
+                <button class="btn-options mr-3">Adicionar</button>
+                <button class="btn-options change-user">Trocar De Usuário</button>
+            </div>
+        </div>
+    </div>
+</div>

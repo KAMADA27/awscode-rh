@@ -1,22 +1,22 @@
-.container-login100 {
+.container-login {
     width: 100%;  
     min-height: 100vh;
 }
 
-.form100 {
+.form {
     min-height: 100vh;
     display: flex;
     align-items: center;
 }
 
-.login100-form {
+.login-form {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.login100-form-title {
+.login-form-title {
     font-size: 24px;
     font-weight: bold;
     color: #00246d;
@@ -26,7 +26,7 @@
     text-align: center;
 }
 
-.btn-form100 {
+.btn-form {
     width: 100%;
     border-radius: 8px;
     background-color: #00246d;

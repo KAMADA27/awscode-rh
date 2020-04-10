@@ -4,13 +4,21 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable()
 export class DataStorageService {
 
-    private isLogin = new BehaviorSubject<boolean>(null);
+    public isLogin: boolean;
 
-    sharedLogin = this.isLogin.asObservable();
+    constructor() {
+        this.isLogin = false;
+     }
+    
+    showNav() {
+        this.isLogin = true;
+    }
 
-    constructor() { }
+    hideNav() {
+        this.isLogin = false;
+    }
 
-    checkLogin(isLogin: boolean) {
-        this.isLogin.next(isLogin);
+    checkLogin() {
+        localStorage.getItem('email') ? this.showNav() : this.hideNav();
     }
 }

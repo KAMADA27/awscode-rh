@@ -12,7 +12,6 @@ import { DataStorageService } from '../shared/data-storage.service';
 export class AuthComponent {
 
   error: string = null;
-  isLogin: boolean = true;
  
   constructor(
     private router: Router,
@@ -26,9 +25,7 @@ export class AuthComponent {
 
     this.error = null;
     const email = form.value.email;
-    this.isLogin = true;
-    this.dataStorageService.checkLogin(this.isLogin);
-
+    this.dataStorageService.showNav();
     localStorage.setItem('email', email);
     this.router.navigate(['./dashboard']);
   }
