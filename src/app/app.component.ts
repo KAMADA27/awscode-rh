@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataStorageService } from './shared/data-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'front-awscode';
+
+    isLogin: boolean = false;
+
+    constructor(private dataStorageService: DataStorageService) {}
+
+    ngOnInit() {
+      this.dataStorageService.sharedLogin.subscribe(login => this.isLogin = login);
+    }
+
+    // checkLogin() {
+    //   let email = localStorage.getItem('email');
+    //   return email ? true : false;
+    // }
 }
