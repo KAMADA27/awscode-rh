@@ -2,7 +2,7 @@
 
 ## Configuração do projeto
 
-Ao acessar a pasta awscode-rh deve-se utilazar o seguinte comando:
+Ao acessar a pasta awscode-rh deve-se utilizar o seguinte comando:
 
 ```
 npm install
