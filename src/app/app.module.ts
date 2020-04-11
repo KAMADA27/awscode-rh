@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DataStorageService } from './shared/data-storage.service';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -26,7 +27,7 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
     AppRoutingModule,
     NgxSmartModalModule.forRoot()
   ],
-  providers: [DataStorageService],
+  providers: [DataStorageService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

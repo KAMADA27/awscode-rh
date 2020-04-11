@@ -4,6 +4,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataStorageService } from '../shared/data-storage.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,12 +17,14 @@ export class DashboardComponent implements OnInit {
   newEmployees: boolean;
   empForm: FormGroup;
   editMode: boolean = false;
+  searchMode: boolean = false;
   search: string;
 
   constructor(
     public ngxSmartModalService: NgxSmartModalService, 
     private router: Router,
-    public dataStorageService: DataStorageService) { }
+    public dataStorageService: DataStorageService,
+    public datePipe: DatePipe) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -64,7 +67,7 @@ export class DashboardComponent implements OnInit {
     this.empForm = new FormGroup({
       'name': new FormControl(employee.name, Validators.required),
       'role': new FormControl(employee.role, Validators.required),
-      'dateOfBirth': new FormControl(new Date(employee.dateOfBirth).toISOString().substring(0, 10), Validators.required),
+      'dateOfBirth': new FormControl(this.datePipe.transform(new Date(employee.dateOfBirth).toISOString().substring(0, 10), 'yyyy-MM-dd'), Validators.required),
       'salary': new FormControl(employee.salary, [
         Validators.required, 
         Validators.pattern(/^[0-9\,\.\/]+$/)
@@ -76,12 +79,21 @@ export class DashboardComponent implements OnInit {
   }
 
   removeEmployee(index: number) {
+    let employee = this.employees[index];
+
+    if (this.searchMode) {
+      this.employees = JSON.parse(localStorage.getItem('employees'));
+      
+      index = this.employees.findIndex((emp) => {
+        return emp.name === employee.name 
+      })
+    }
+
     this.employees.splice(index, 1);
     localStorage.setItem('employees', JSON.stringify(this.employees));
   }
 
   changeUser() {
-    localStorage.removeItem('employees');
     this.dataStorageService.hideNav();
     this.router.navigate(['./auth']);
   }
@@ -91,6 +103,8 @@ export class DashboardComponent implements OnInit {
     let newEmployees = [];
     
     if (this.search !== '' && this.employees != null) {
+      this.searchMode = true;
+
       this.employees.filter(emp => {
         searchEmp = emp.name.toLowerCase().includes(this.search.toLowerCase());
         searchEmp ? newEmployees.push(emp) : null;
@@ -98,6 +112,7 @@ export class DashboardComponent implements OnInit {
 
       this.employees = newEmployees;
     } else {
+      this.searchMode = false
       this.employees = JSON.parse(localStorage.getItem('employees'));
     }
   }
