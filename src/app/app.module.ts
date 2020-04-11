@@ -4,10 +4,11 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from 'src/app-routing-module';
 import { AuthComponent } from './auth/auth.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DataStorageService } from './shared/data-storage.service';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 
 
@@ -21,7 +22,9 @@ import { DataStorageService } from './shared/data-storage.service';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    ReactiveFormsModule,
+    AppRoutingModule,
+    NgxSmartModalModule.forRoot()
   ],
   providers: [DataStorageService],
   bootstrap: [AppComponent]

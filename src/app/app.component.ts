@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 
@@ -13,7 +13,7 @@ export class AppComponent {
 
     constructor(public dataStorageService: DataStorageService) {}
 
-    ngOnInit() {
+    ngOnInit(): void {
       this.dataStorageService.checkLogin();
     }
 }

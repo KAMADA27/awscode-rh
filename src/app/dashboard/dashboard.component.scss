@@ -35,7 +35,7 @@
     margin: 10px 0 30px 0;
 }
 
-.header-color {
+.blue-color {
     color: #00246d;
 }
 
@@ -70,6 +70,34 @@
 
 }
 
-.change-user {
+.red-background {
     background-color: #9d192c;
+}
+
+.red-color {
+    color: #9d192c;
+}
+
+.modal-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #00246d;
+    margin-bottom: 25px;
+}
+
+.modal-btn {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.table-scroll {
+    height: 1800px;
+    overflow: auto;
 }

@@ -3,41 +3,114 @@
         <div class="dashboard-title">
             <span class="title">Lista De Empregados</span>
             <div class="title-border">
-                <input class="search-input" placeholder="Buscar Empregado Por Nome"/> 
+                <input 
+                    class="search-input" 
+                    placeholder="Buscar Empregado Por Nome"
+                    [(ngModel)]="search"
+                    (ngModelChange)="searchName()" 
+                /> 
             </div>
         </div>
-        <table class="table">
-            <thead>
-                <tr class="header-color">
-                    <th scope="col">Nome</th>
-                    <th scope="col">Cargo</th>
-                    <th scope="col">Data de Nascimento</th>
-                    <th scope="col">Salário</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let emp of employees">
-                    <td>{{ emp.name }}</td>
-                    <td>{{ emp.role }}</td>
-                    <td>{{ emp.dateOfBirth | date: 'dd/MM/yyyy' }}</td>
-                    <td>R$ {{ emp.salary }}</td>
-                    <td class="btn-column">
-                        <button class="icon-btn">
-                            <span class="material-icons">edit</span>
-                        </button>
-                        <button class="icon-btn">
-                            <span class="material-icons">delete</span>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-scroll">
+            <table class="table">
+                <thead>
+                    <tr class="blue-color">
+                        <th scope="col">Nome</th>
+                        <th scope="col">Cargo</th>
+                        <th scope="col">Data de Nascimento</th>
+                        <th scope="col">Salário</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let emp of employees; let i = index">
+                        <td>{{ emp.name }}</td>
+                        <td>{{ emp.role }}</td>
+                        <td>{{ emp.dateOfBirth | date: 'dd/MM/yyyy' }}</td>
+                        <td>R$ {{ emp.salary }}</td>
+                        <td class="btn-column">
+                            <button 
+                                class="icon-btn" 
+                                (click)="editEmployee(i)">
+                                    <span class="material-icons blue-color">edit</span>
+                            </button>
+                            <button 
+                                class="icon-btn" 
+                                (click)="removeEmployee(i)">
+                                    <span class="material-icons red-color">delete</span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div class="dashboard-btn">
             <div class="d-flex">
-                <button class="btn-options mr-3">Adicionar</button>
-                <button class="btn-options change-user">Trocar De Usuário</button>
+                <button class="btn-options mr-3" (click)="addEmployee()">Adicionar</button>
+                <button class="btn-options red-background" (click)="changeUser()">Trocar De Usuário</button>
             </div>
         </div>
+        <ngx-smart-modal #empModal identifier="empModal">
+            <div class="col modal-container">
+                <span class="modal-title">
+                    {{  editMode ? 'Editar Empregado' : 'Cadastrar Empregado' }}
+                </span>
+                <form class="w-75" [formGroup]="empForm" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="form-group w-100 mb-4">
+                            <input 
+                                type="text"
+                                id="name"
+                                class="form-control"
+                                formControlName="name"
+                                placeholder="Nome"
+                            >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group w-100 mb-4">
+                            <input 
+                                type="date"
+                                id="dateOfBirth"
+                                class="form-control"
+                                formControlName="dateOfBirth"
+                                placeholder="Data de nascimento"
+                            >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group w-100 mb-4">
+                            <input 
+                                type="text"
+                                id="salary"
+                                class="form-control"
+                                formControlName="salary"
+                                placeholder="Salário"
+                            >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group w-100 mb-4">
+                            <input 
+                                type="text"
+                                id="role"
+                                class="form-control"
+                                formControlName="role"
+                                placeholder="Cargo"
+                            >
+                        </div>
+                    </div>
+                    <div class="col modal-btn">
+                        <button 
+                            type="submit" 
+                            class="btn-options w-75 py-2"
+                            [disabled]="!empForm.valid"
+                        >
+                            Salvar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </ngx-smart-modal>
     </div>
 </div>
