@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class DataStorageService {
@@ -16,9 +15,5 @@ export class DataStorageService {
 
     hideNav() {
         this.isLogin = false;
-    }
-
-    checkLogin() {
-        localStorage.getItem('email') ? this.showNav() : this.hideNav();
     }
 }

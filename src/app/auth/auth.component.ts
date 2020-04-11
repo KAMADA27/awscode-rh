@@ -24,9 +24,7 @@ export class AuthComponent {
     }
 
     this.error = null;
-    const email = form.value.email;
     this.dataStorageService.showNav();
-    localStorage.setItem('email', email);
     this.router.navigate(['./dashboard']);
   }
 }

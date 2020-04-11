@@ -9,11 +9,6 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
 
-    isLogin: boolean;
-
-    constructor(public dataStorageService: DataStorageService) {}
-
-    ngOnInit(): void {
-      this.dataStorageService.checkLogin();
-    }
+  constructor(public dataStorageService: DataStorageService) {}
+  
 }

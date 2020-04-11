@@ -12,7 +12,7 @@ import { DataStorageService } from '../shared/data-storage.service';
 })
 export class DashboardComponent implements OnInit {
 
-  employees: Employee[] = []
+  employees: Employee[];
   newEmployees: boolean;
   empForm: FormGroup;
   editMode: boolean = false;
@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.initEmployeesData();
+    this.dataStorageService.showNav();
   }
 
   private initForm() {
@@ -80,7 +81,6 @@ export class DashboardComponent implements OnInit {
   }
 
   changeUser() {
-    localStorage.removeItem('email');
     localStorage.removeItem('employees');
     this.dataStorageService.hideNav();
     this.router.navigate(['./auth']);
